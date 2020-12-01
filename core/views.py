@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from crawler import urls
 
 # Create your views here.
 def index(request):
 
-    return render(request, 'core/base.html', {})
+    return redirect('crawler:index')

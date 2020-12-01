@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="col-12 my-3">
+    <button type="button" class="btn btn-sm  btn-primary" style="margin-left: 79%;">Add Impressora</button>
+</div>
+
+<table class="table table-hover table-dark" style="margin-left: auto; margin-right: auto; width: 70%;">
+    <thead>
+      <tr>
+        <th scope="col">Departamento</th>
+        <th scope="col">Impressora</th>
+        <th scope="col">Apelido</th>
+        <th scope="col">%</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">TI</th>
+        <td>BROTHER 5002DW</td>
+        <td>Bruce</td>
+        <td>60%</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock content %}
+    
