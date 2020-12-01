@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import core.urls
+import crawler.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(core.urls, namespace='core')),
+    path('', include(crawler.urls, namespace='crawler')),
 ]

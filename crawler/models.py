@@ -8,14 +8,19 @@ class Departamento(models.Model):
         return self.nome
 
 NOMES_IMPRESSORAS = [
-    (1, 'BROTHER DCP6250DW',)
+    ('1', 'BROTHER DCP6250DW',)
+]
+
+STATUS_IMPRESSORAS = [
+    ('0', 'OFFLINE'),
+    ('1', 'ONLINE'),
 ]
 class Impressora(models.Model):
     ip = models.CharField('Endereço IP', max_length=15, null=False)
-    nome = models.CharField('Nome', choices=NOMES_IMPRESSORAS, max_length=50)
+    modelo = models.CharField('Nome', choices=NOMES_IMPRESSORAS, max_length=50)
     departamento = models.ForeignKey(Departamento, related_name="Departamento", on_delete=models.CASCADE)
-    nivel_toner = models.DecimalField("Nível Toner", decimal_places=2, max_digits=3)
-    status = models.CharField('Status', max_length=50)
+    nivel_toner = models.DecimalField("Nível Toner", decimal_places=2, max_digits=4)
+    status = models.CharField('Status', choices=STATUS_IMPRESSORAS, max_length=50)
 
     def __str__(self):
-        return self.nome + ' - ' + self.departamento.nome
+        return self.modelo + ' - ' + self.departamento.nome

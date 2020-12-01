@@ -5,36 +5,52 @@
 {% block content %}
 
 <div class="col-12 my-3">
-    <button type="button" class="btn btn-sm  btn-primary" style="margin-left: 79%;">Add Impressora</button>
+    <a href="javascript:void(0);" data-href="{% url 'crawler:impressora_adicionar' %}" class="btn btn-sm  btn-primary openPopup" style="margin-left: 79%;">Add Impressora</a>
 </div>
 
 <table class="table table-hover table-dark" style="margin-left: auto; margin-right: auto; width: 70%;">
     <thead>
       <tr>
         <th scope="col">Departamento</th>
-        <th scope="col">Impressora</th>
-        <th scope="col">Apelido</th>
-        <th scope="col">%</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">IP</th>
+        <th scope="col">Nível Toner</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
+      {% for impressora in impressoras %}
       <tr>
-        <td scope="row">TI</td>
-        <td>BROTHER 5002DW</td>
-        <td>Bruce</td>
-        <td>60%</td>
-        <td>OK</td>
+        <td scope="row">{{ impressora.departamento }}</td>
+        <td>{{ impressora.get_modelo_display }}</td>
+        <td>{{ impressora.ip }}</td>
+        <td>
+          <div class="progress-bar bg-success" id="nivel_toner" role="progressbar" style="width:{{ impressora.nivel_toner|safe }}%;"
+          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ impressora.nivel_toner }}%</div>
+        </td>
+        {% if impressora.status == '0' %}
+          <td style="font-weight: bold; color: red;">{{ impressora.get_status_display|upper }}</td>
+        {% elif impressora.status == '1' %}
+          <td style="font-weight: bold; color: green;">{{ impressora.get_status_display|upper }}</td>
+        {% endif %}
       </tr>
-      <tr>
-        <td scope="row">TI</td>
-        <td>BROTHER 5002DW</td>
-        <td>Bruce</td>
-        <td>60%</td>
-        <td>Stand-By</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 
+  <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+  </div>
+
 {% endblock content %}
-    
+  
+
+{% block scripts %}
+  <script src="{% static 'js/modal.js' %}"></script>
+{% endblock scripts %}
+  
