@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="col-12 my-3">
-    <a href="javascript:void(0);" data-href="{% url 'crawler:impressora_adicionar' %}" class="btn btn-sm  btn-primary openPopup" style="margin-left: 79%;">Add Impressora</a>
+    <a href="javascript:void(0);" data-href="{% url 'crawler:impressora_adicionar' %}" class="btn btn-sm  btn-primary openPopup" style="margin-left: 78%;">Add Impressora</a>
 </div>
 
 <table class="table table-hover table-dark" style="margin-left: auto; margin-right: auto; width: 70%;">
@@ -29,9 +29,9 @@
           aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ impressora.nivel_toner }}%</div>
         </td>
         {% if impressora.status == '0' %}
-          <td style="font-weight: bold; color: red;">{{ impressora.get_status_display|upper }}</td>
+          <td style="font-weight: bold; color: red; width: 25%;">{{ impressora.get_status_display|upper }}<span style="color: white;"> [{{ impressora.obs }}]</span></td>
         {% elif impressora.status == '1' %}
-          <td style="font-weight: bold; color: green;">{{ impressora.get_status_display|upper }}</td>
+          <td style="font-weight: bold; color: green; width: 25%;">{{ impressora.get_status_display|upper }}<span style="color: white;"> [{{ impressora.obs }}]</span></td>
         {% endif %}
       </tr>
       {% endfor %}
